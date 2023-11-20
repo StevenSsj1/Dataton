@@ -1,0 +1,27 @@
+{
+  "provincias": [
+    {"Provincia": "AZUAY", "Resultado": 1.474936},
+    {"Provincia": "BOLIVAR", "Resultado": 0.476342},
+    {"Provincia": "CAÑAR", "Resultado": 0.355371},
+    {"Provincia": "CHIMBORAZO", "Resultado": 1.605403},
+    {"Provincia": "COTOPAXI", "Resultado": 0.381676},
+    {"Provincia": "EL ORO", "Resultado": 1.636943},
+    {"Provincia": "ESMERALDAS", "Resultado": 1.816274},
+    {"Provincia": "GUAYAS", "Resultado": 3.573348},
+    {"Provincia": "IMBABURA", "Resultado": 24.211609},
+    {"Provincia": "LOJA", "Resultado": 0.205131},
+    {"Provincia": "LOS RIOS", "Resultado": 7.558944},
+    {"Provincia": "MANABI", "Resultado": 0.340370},
+    {"Provincia": "MORONA SANTIAGO", "Resultado": 1.429027},
+    {"Provincia": "NAPO", "Resultado": 0.355371},
+    {"Provincia": "ORELLANA", "Resultado": 3.210805},
+    {"Provincia": "PASTAZA", "Resultado": 0.381676},
+    {"Provincia": "PICHINCHA", "Resultado": 32.534233},
+    {"Provincia": "SANTA ELENA", "Resultado": 0.139713},
+    {"Provincia": "SANTO DOMINGO DE LOS TSACHILAS", "Resultado": 1.864356},
+    {"Provincia": "SUCUMBIOS", "Resultado": 9.079354},
+    {"Provincia": "TUNGURAHUA", "Resultado": 0.045585},
+    {"Provincia": "ZAMORA CHINCHIPE", "Resultado": 0.419941},
+    {"Provincia": "ZONA NO DELIMITADA", "Resultado": 0.113457}
+  ]
+}

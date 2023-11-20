@@ -1,0 +1,13 @@
+{
+  "data": [
+    {"Provincia": "EL ORO", "Resultado": 0.409236},
+    {"Provincia": "ESMERALDAS", "Resultado": 0.419140},
+    {"Provincia": "GUAYAS", "Resultado": 1.087541},
+    {"Provincia": "LOJA", "Resultado": 0.022792},
+    {"Provincia": "LOS RIOS", "Resultado": 0.209971},
+    {"Provincia": "MANABI", "Resultado": 0.340370},
+    {"Provincia": "PICHINCHA", "Resultado": 0.818471},
+    {"Provincia": "SANTA ELENA", "Resultado": 0.279427},
+    {"Provincia": "SANTO DOMINGO DE LOS TSACHILAS", "Resultado": 0.155363}
+  ]
+}

@@ -1,7 +1,7 @@
 import math
 
 import pandas as pd
-
+import json
 # Lectura del archivo .csv
 poblacion_provincia = [881394, 209933, 281396, 186869, 524004, 488716
     , 715751, 643654, 33042, 4387434, 476257]
@@ -45,14 +45,19 @@ poblacion_provincias = poblacion_provincia * (23 // len(poblacion_provincia)) + 
                                                                                 :23 % len(poblacion_provincia)]
 
 
-# def tasa_homicidios_provincia():
-#     # Agrupa por provincia y cuenta el número de homicidios en cada provincia
-#     homicidios_por_provincia = df[df['Tipo Muert.'] == 'HOMICIDIO'].groupby('Provincia').size().reset_index(
-#         name='Numero de Homicidios')
-#     datos_provincias = combinar_listas_en_dataframe(lista_provincias, poblacion_provincias)
-#     datos_combinados = pd.merge(homicidios_por_provincia, datos_provincias, on='Provincia')
-#     datos_combinados['Resultado'] = (datos_combinados['Numero de Homicidios'] / datos_combinados['Poblacion'] * 100000)
-#     return datos_combinados[['Provincia', 'Resultado']]
+def tasa_homicidios_provincia():
+    # Agrupa por provincia y cuenta el número de homicidios en cada provincia
+    homicidios_por_provincia = df[df['Tipo Muert.'] == 'SICARIATO'].groupby('Provincia').size().reset_index(
+        name='Numero de Homicidios')
+    datos_provincias = combinar_listas_en_dataframe(lista_provincias, poblacion_provincias)
+    datos_combinados = pd.merge(homicidios_por_provincia, datos_provincias, on='Provincia')
+    datos_combinados['Resultado'] = (datos_combinados['Numero de Homicidios'] / datos_combinados['Poblacion'] * 100000)
+    return print(datos_combinados[['Provincia', 'Resultado']])
+
+def leer_tasa_homicidios_provincia(delito:str):
+    with open(f"tasa_{delito}_provincia.json", "r") as file:
+        datos_provincias = json.load(file)
+    return datos_provincias
 
 def arma_por_delito(tipo_delito: str, tipo_arma: str):
     delito = tipo_delito.split(".")
@@ -61,5 +66,27 @@ def arma_por_delito(tipo_delito: str, tipo_arma: str):
     resultado = math.floor(proporcion_con_arma_de_fuego)
     return resultado
 
+def distribucion_temporal():
+    # Realiza la lectura del archivo CSV y ajusta el formato de fecha directamente
+    df = pd.read_csv('mdi_homicidiosintencionales_pm_2023_enero_septiembre.csv', delimiter=';', encoding='ISO-8859-1', parse_dates=['Fecha Infracción'], dayfirst=True)
+    # Transforma la columna 'Fecha Infracción' a formato de fecha
+    df['Fecha Infracción'] = pd.to_datetime(df['Fecha Infracción'])
 
-arma_por_delito('ASESINATO', 'ARMA DE FUEGO')
+    # Crea una nueva columna para el mes
+    df['Mes'] = df['Fecha Infracción'].dt.month
+
+    # Agrupa por mes y cuenta el número de homicidios
+    distribucion_temporal = df.groupby('Mes').size().reset_index(name='Numero de Homicidios por Mes')
+
+    return distribucion_temporal
+
+def distribucion_sexo_etnia():
+    # Agrupa por sexo y cuenta el número de homicidios
+    distribucion_sexo = df.groupby('Sexo').size().reset_index(name='Numero de Homicidios por Sexo')
+
+    # Agrupa por etnia y cuenta el número de homicidios
+    distribucion_etnia = df.groupby('Etnia').size().reset_index(name='Numero de Homicidios por Etnia')
+
+    return distribucion_sexo, distribucion_etnia
+
+
