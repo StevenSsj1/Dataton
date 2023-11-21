@@ -4,9 +4,11 @@ import pandas as pd
 import json
 # Lectura del archivo .csv
 poblacion_provincia = [881394, 209933, 281396, 186869, 524004, 488716
-    , 715751, 643654, 33042, 4387434, 476257]
+    ,715751, 643654, 33042, 4387434, 476257, 521154, 921763, 1562079,
+    196535, 133705, 161338, 114202, 3228233, 401178, 458580, 230503,
+    590600, 120416, 41907]
 
-reader = pd.read_csv('mdi_homicidiosintencionales_pm_2023_enero_septiembre.csv',
+reader = pd.read_csv('datasets/mdi_homicidiosintencionales_pm_2023_enero_septiembre.csv',
                      delimiter=';', encoding='ISO-8859-1')
 df = pd.DataFrame(reader)
 row, column = df.shape  # numeros de filas y columnas en el csv
@@ -59,16 +61,20 @@ def leer_tasa_homicidios_provincia(delito:str):
         datos_provincias = json.load(file)
     return datos_provincias
 
-def arma_por_delito(tipo_delito: str, tipo_arma: str):
-    delito = tipo_delito.split(".")
-    homicidios_intencionales = df[df['Tipo Muert.'] == delito[0]]
+def arma_por_delito_json(tipo_delito: str, tipo_arma: str):
+    homicidios_intencionales = df[df['Tipo Muert.'] == tipo_delito]
     proporcion_con_arma_de_fuego = ((homicidios_intencionales['Arma'] == tipo_arma).mean())*100
     resultado = math.floor(proporcion_con_arma_de_fuego)
     return resultado
+def arma_por_delito():
+    with open("arma_por_delito.json", "r") as file:
+        datos = json.load(file)
+    return datos
+
 
 def distribucion_temporal():
     # Realiza la lectura del archivo CSV y ajusta el formato de fecha directamente
-    df = pd.read_csv('mdi_homicidiosintencionales_pm_2023_enero_septiembre.csv', delimiter=';', encoding='ISO-8859-1', parse_dates=['Fecha Infracción'], dayfirst=True)
+    df = pd.read_csv('datasets/mdi_homicidiosintencionales_pm_2023_enero_septiembre.csv', delimiter=';', encoding='ISO-8859-1', parse_dates=['Fecha Infracción'], dayfirst=True)
     # Transforma la columna 'Fecha Infracción' a formato de fecha
     df['Fecha Infracción'] = pd.to_datetime(df['Fecha Infracción'])
 

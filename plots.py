@@ -4,7 +4,7 @@ from fastapi.responses import StreamingResponse
 import io
 import seaborn as sns
 
-reader = pd.read_csv('mdi_homicidiosintencionales_pm_2023_enero_septiembre.csv',
+reader = pd.read_csv('datasets/mdi_homicidiosintencionales_pm_2023_enero_septiembre.csv',
                      delimiter=';', encoding='ISO-8859-1')
 df = pd.DataFrame(reader)
 
@@ -46,7 +46,7 @@ def grafico_pastel_sexo_etnia(distribucion_sexo, distribucion_etnia):
 
 def mapa_calor_homicidios_por_provincia():
     # Realiza la lectura del archivo CSV y ajusta el formato de fecha directamente
-    df = pd.read_csv('mdi_homicidiosintencionales_pm_2023_enero_septiembre.csv', delimiter=';', encoding='ISO-8859-1',
+    df = pd.read_csv('datasets/mdi_homicidiosintencionales_pm_2023_enero_septiembre.csv', delimiter=';', encoding='ISO-8859-1',
                      parse_dates=['Fecha Infracción'], dayfirst=True)
 
     # Agregar una nueva columna 'Mes' extrayendo el mes de 'Fecha Infracción'

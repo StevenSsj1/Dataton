@@ -1,5 +1,4 @@
-{
-  "provincias": [
+[
     {"Provincia": "AZUAY", "Resultado": 1.474936},
     {"Provincia": "BOLIVAR", "Resultado": 0.476342},
     {"Provincia": "CAÑAR", "Resultado": 0.355371},
@@ -11,17 +10,16 @@
     {"Provincia": "IMBABURA", "Resultado": 24.211609},
     {"Provincia": "LOJA", "Resultado": 0.205131},
     {"Provincia": "LOS RIOS", "Resultado": 7.558944},
-    {"Provincia": "MANABI", "Resultado": 0.340370},
-    {"Provincia": "MORONA SANTIAGO", "Resultado": 1.429027},
-    {"Provincia": "NAPO", "Resultado": 0.355371},
-    {"Provincia": "ORELLANA", "Resultado": 3.210805},
-    {"Provincia": "PASTAZA", "Resultado": 0.381676},
-    {"Provincia": "PICHINCHA", "Resultado": 32.534233},
-    {"Provincia": "SANTA ELENA", "Resultado": 0.139713},
-    {"Provincia": "SANTO DOMINGO DE LOS TSACHILAS", "Resultado": 1.864356},
-    {"Provincia": "SUCUMBIOS", "Resultado": 9.079354},
-    {"Provincia": "TUNGURAHUA", "Resultado": 0.045585},
-    {"Provincia": "ZAMORA CHINCHIPE", "Resultado": 0.419941},
-    {"Provincia": "ZONA NO DELIMITADA", "Resultado": 0.113457}
-  ]
-}
+    {"Provincia": "MANABI", "Resultado": 0.575646},
+    {"Provincia": "MORONA SANTIAGO", "Resultado": 0.325463},
+    {"Provincia": "NAPO", "Resultado": 0.064017},
+    {"Provincia": "ORELLANA", "Resultado": 3.052891},
+    {"Provincia": "PASTAZA", "Resultado": 1.495830},
+    {"Provincia": "PICHINCHA", "Resultado": 98.550868},
+    {"Provincia": "SANTA ELENA", "Resultado": 0.875641},
+    {"Provincia": "SANTO DOMINGO DE LOS TSACHILAS", "Resultado": 0.371720},
+    {"Provincia": "SUCUMBIOS", "Resultado": 0.747798},
+    {"Provincia": "TUNGURAHUA", "Resultado": 0.436129},
+    {"Provincia": "ZAMORA CHINCHIPE", "Resultado": 0.867668},
+    {"Provincia": "ZONA NO DELIMITADA", "Resultado": 0.169319}
+]

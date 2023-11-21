@@ -4,9 +4,16 @@ from fastapi import FastAPI, HTTPException, Query
 from plots import *
 from enum import Enum
 from fastapi.responses import JSONResponse
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Puedes ajustar esto a tu dominio específico en producción
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class TipoDelito(str, Enum):
     HOMICIDIO = "HOMICIDIO"
@@ -14,9 +21,32 @@ class TipoDelito(str, Enum):
     ASESINATO = "ASESINATO"
 
 
+class TipoDeArma(str, Enum):
+    ARMA_BLANCA = "ARMA BLANCA"
+    ARMA_DE_FUEGO = "ARMA DE FUEGO"
+    ARMA_CONTUNDENTE = "ARMA CONTUNDENTE"
+
+
+@app.get("/")
+def obtener_info_api():
+    info_api = {
+        "titulo": "API de Homicidios",
+        "descripcion": "Una API para obtener datos relacionados con homicidios",
+        "version": "1.0",
+        "autor": "Tu Nombre",
+        "endpoints": {
+            "/obtener_datos": {
+                "descripcion": "Obtener datos de criminologia",
+            },
+            # Otros endpoints pueden agregarse aquí
+        }
+    }
+    return info_api
+
 @app.get("/api/canton")
 async def registros_por_canton(canton=Query(..., title="Canton")):
-    datos = info_by_canton(canton)
+    nombre_canton = str(canton).upper()
+    datos = info_by_canton(nombre_canton)
     if datos != 'Error':
         return {"mensaje": f"Datos obtenidos correctamente del cantón {canton}", "datos": datos}
     raise HTTPException(status_code=404, detail="Canton no encontrado")
@@ -31,11 +61,14 @@ def obtener_tasa_homicidios_provincia(delito: TipoDelito = Query(..., title="Tip
 
 
 @app.get('/api/homicidios/proporcion')
-async def proporcion_delitos(delito: TipoDelito = Query(..., title="Tipo de Delito"),
-                             arma=Query(..., title="Tipo de arma")):
-    proporcion = arma_por_delito(delito, arma)
-    return {'mensaje': f'Datos obtenidos correctamente del delito {delito} con {arma}',
-            'datos': proporcion}
+async def proporcion_delitos(tipo_delito: TipoDelito = Query(..., title="Tipo de Delito"),
+                             tipo_arma: TipoDeArma = Query(..., title="Tipo de Arma")):
+    datos_homicidio = arma_por_delito()
+    for dato in datos_homicidio:
+        if dato[0] == tipo_delito and dato[1] == tipo_arma:
+            return {"resultado": dato[2]}
+
+    return {"resultado": "No se encontraron datos para los parámetros proporcionados."}
 
 
 @app.get("/api/graficas")
